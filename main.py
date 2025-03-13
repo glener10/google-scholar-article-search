@@ -23,6 +23,8 @@ STOP_IN_N_RESULTS = -1 # (only considered if is > 0)
 INITIAL_SEARCH_YEAR = 2020
 FINAL_SEARCH_YEAR = 2025
 
+SEARCH_QUERY = '("security mechanisms" OR "protection mechanisms" OR "security measures" OR "security protocols" OR "fraud prevention") AND ("Brazilian instant payment" OR " instant payment system in Brazil" OR " PIX ") AND ("Brazil")'
+
 print(f"🚀 Starting process at {start_time}")
 print("🕒 Wait time configurations:")
 print(f"  - Wait time per article search (seconds): {WAIT_TIME_PER_ARTICLE_SEARCH_SECONDS}")
@@ -106,12 +108,12 @@ if PROXY_TYPE != "NO_PROXY":
     print("⚠️ invalid PROXY_TYPE")
   scholarly.use_proxy(pg)
 
-SEARCH_QUERY = '("attacks" OR "security incident" OR "information leak" OR "fraud" OR "cybercrime" OR "vulnerability exploitation" OR "cybersecurity") AND ("Brazilian instant payment" OR " instant payment system in Brazil" OR " PIX ") AND ("Brazil")'
-# SEARCH_QUERY = '("security mechanisms" OR "protection mechanisms" OR "security measures" OR "security protocols" OR "fraud prevention") AND ("Brazilian instant payment" OR " instant payment system in Brazil" OR " PIX ") AND ("Brazil")'
-# SEARCH_QUERY = '("attacks" OR "security incident" OR "information leak" OR "fraud" OR "cybercrime" OR "vulnerability exploitation" OR "cybersecurity") AND ("IA" OR "artificial intelligence" OR "machine learning" OR " LLM " OR "LLMs") AND ("Brazilian instant payment" OR " instant payment system in Brazil" OR " PIX ") AND ("Brazil")'
-
-print(f"🔍 searching articles with query: {SEARCH_QUERY}")
-search_results = scholarly.search_pubs(SEARCH_QUERY, year_low=INITIAL_SEARCH_YEAR, year_high=FINAL_SEARCH_YEAR)
+try:
+  print(f"🔍 searching articles with query: {SEARCH_QUERY}")
+  search_results = scholarly.search_pubs(SEARCH_QUERY, year_low=INITIAL_SEARCH_YEAR, year_high=FINAL_SEARCH_YEAR)
+except Exception as e:
+  print(f"❌ error in search: {e}")
+  exit(1)
 
 articles = []
 count_save_csv = 0
