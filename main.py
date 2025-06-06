@@ -13,12 +13,8 @@ load_dotenv()
 WAIT_TIME_PER_ARTICLE_SEARCH_SECONDS = 2
 WAIT_TIME_PER_CSV_SAVE_SECONDS = 5
 
-#🔧 Proxy configurations
-PROXY_TYPE = "SCRAPER_API" # SCHOLARLY_FREE_PROXY, SCRAPER_API, MANUAL
-CHANGE_FREE_PROXY_EVERY_N_ARTICLES = -1 # only works if PROXY_TYPE = "SCHOLARLY_FREE_PROXY"
-
 #💾 CSV configurations
-SAVE_CSV_EVERY_N_ARTICLES = 50
+SAVE_CSV_EVERY_N_ARTICLES = 2
 OUTPUT_FILE_NAME = 'articles.csv'
 
 #🔎 Search configurations
@@ -31,10 +27,6 @@ print(f"🚀 Starting process at {start_time}")
 print("🕒 Wait time configurations:")
 print(f"  - Wait time per article search (seconds): {WAIT_TIME_PER_ARTICLE_SEARCH_SECONDS}")
 print(f"  - Wait time per CSV save (seconds): {WAIT_TIME_PER_CSV_SAVE_SECONDS}")
-print(f"🔧 Proxy configurations:")
-print(f"  - Proxy type: {PROXY_TYPE} - Types availables: SCHOLARLY_FREE_PROXY, SCRAPER_API, MANUAL")
-if(CHANGE_FREE_PROXY_EVERY_N_ARTICLES > 0):
-  print(f"  - Change free proxy every N articles (only considered if (PROXY_TYPE = 'SCHOLARLY_FREE_PROXY') and CHANGE_FREE_PROXY_EVERY_N_ARTICLES > 0): {CHANGE_FREE_PROXY_EVERY_N_ARTICLES}")
 print(f"💾 CSV configurations:")
 print(f"  - Save CSV every N articles: {SAVE_CSV_EVERY_N_ARTICLES}")
 print(f"  - Output file: {OUTPUT_FILE_NAME}")
@@ -44,7 +36,7 @@ if (STOP_IN_N_RESULTS > 0):
 print(f"  - Year Range: {INITIAL_SEARCH_YEAR} to {FINAL_SEARCH_YEAR}")
 print(f"  - Search Query: {SEARCH_QUERY}\n")
 
-scholarly.use_proxy(config_proxy(PROXY_TYPE))
+scholarly.use_proxy(config_proxy())
 
 try:
   print(f"🔍 searching articles...")
@@ -55,7 +47,6 @@ except Exception as e:
 
 articles = []
 count_save_csv = 0
-count_change_proxy = 0
 total_articles = 0
 print("🛠️ processing articles:")
 try:
@@ -80,11 +71,6 @@ try:
     print(f'{i + 1}: {title} (Year: {year})')
 
     count_save_csv += 1
-    count_change_proxy += 1
-    if PROXY_TYPE == "SCHOLARLY_FREE_PROXY" and count_change_proxy >= CHANGE_FREE_PROXY_EVERY_N_ARTICLES:
-      scholarly.use_proxy(config_proxy(PROXY_TYPE))
-      count_change_proxy = 0
-
     if count_save_csv >= SAVE_CSV_EVERY_N_ARTICLES:
       save_articles_csv(articles, OUTPUT_FILE_NAME)
       count_save_csv = 0
