@@ -35,7 +35,7 @@ Dependencies and versions
 
 ## ☕ **Using**
 
-First, check the [dependencies](#dependenciesandenvironment) and the [installation](#installing) process
+First, check the [dependencies](#dependenciesandenvironment) process
 
 Here are the constants that control the application, you can edit them directly in the _main.py_ file:
 
