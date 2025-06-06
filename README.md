@@ -1,6 +1,6 @@
-# **Scholarly Article Search Script**
+# **Google Scholar Article Search**
 
-<p align="center"> 🚀 This script is designed to search for scholarly articles using specific search queries and configurations. It utilizes the `scholarly` library to perform the searches, scraper api and `pandas` to handle CSV operations. </p>
+<p align="center"> 🚀 This script is designed to search articles in google scholar using specific search queries and configurations. It utilizes the `scholarly` library to perform the searches, scraper api and `pandas` to handle CSV operations. </p>
 
 <h3>🏁 Table of Contents</h3>
 
