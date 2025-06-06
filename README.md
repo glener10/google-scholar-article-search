@@ -50,7 +50,7 @@ Here are the constants that control the application, you can edit them directly 
 - `FINAL_SEARCH_YEAR`: Final year for the article search.
 - `SEARCH_QUERY`: variable to customize the search criteria.
 
-- Ensure you have a `.env` file with the environment variable **SCRAPER_API_KEY**, you can get one in [scraper api](https://www.scraperapi.com/).
+Ensure you have a `.env` file with the environment variable **SCRAPER_API_KEY**, you can get one in [scraper api](https://www.scraperapi.com/).
 
 Going to _root_ folder and exec:
 
