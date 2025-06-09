@@ -14,6 +14,8 @@
 
 ☕ [Using](#using)
 
+⚙️ [Install](#install)
+
 👷 [Author](#author)
 
 <!--te-->
@@ -31,11 +33,21 @@ Dependencies and versions
 - `requests` 2.25.1
 - `pandas` 2.2.3
 
+<div id="install"></div>
+
+## ⚙️ **Install**
+
+We use venv, to install all dependencies exec
+
+```
+$ make install
+```
+
 <div id="using"></div>
 
 ## ☕ **Using**
 
-First, check the [dependencies](#dependenciesandenvironment) process
+First, check the [dependencies](#dependenciesandenvironment) and [install](#install) process
 
 Here are the constants that control the application, you can edit them directly in the _main.py_ file:
 
@@ -55,7 +67,13 @@ Ensure you have a `.env` file with the environment variable **SCRAPER_API_KEY**,
 Going to _root_ folder and exec:
 
 ```
-$ python3 main.py
+$ make run
+```
+
+you can clean the environment using
+
+```
+$ make clean
 ```
 
 <div id="author"></div>
