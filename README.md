@@ -14,8 +14,6 @@
 
 ☕ [Using](#using)
 
-⚙️ [Install](#install)
-
 👷 [Author](#author)
 
 <!--te-->
@@ -26,21 +24,28 @@
 
 ## 💻 **Dependencies and Environment**
 
-Dependencies and versions
+Python 3.12.0
 
-- Python 3.10.12
-- `scholarly` 1.7.11
-- `requests` 2.25.1
-- `pandas` 2.2.3
+Check libs and versions in [`requirements.txt`](requirements.txt)
 
-<div id="install"></div>
-
-## ⚙️ **Install**
-
-We use venv, to install all dependencies exec
+To setup environment use (you will need [venv](https://docs.python.org/pt-br/3.13/library/venv.html)):
 
 ```
-$ make install
+$ make setup
+```
+
+And enable the virtual ambient using:
+
+```
+$ source .venv/bin/activate
+```
+
+Ensure you have a `.env` file with the environment variable **SCRAPER_API_KEY**, you can get one in [scraper api](https://www.scraperapi.com/)
+
+you can clean the environment using
+
+```
+$ make clean
 ```
 
 <div id="using"></div>
@@ -62,18 +67,10 @@ Here are the constants that control the application, you can edit them directly 
 - `FINAL_SEARCH_YEAR`: Final year for the article search.
 - `SEARCH_QUERY`: variable to customize the search criteria.
 
-Ensure you have a `.env` file with the environment variable **SCRAPER_API_KEY**, you can get one in [scraper api](https://www.scraperapi.com/).
-
 Going to _root_ folder and exec:
 
 ```
-$ make run
-```
-
-you can clean the environment using
-
-```
-$ make clean
+$ python main.py
 ```
 
 <div id="author"></div>
